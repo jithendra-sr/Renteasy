@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ⚠️ YOUR GOOGLE APPS SCRIPT WEB APP URL
-  const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbyEBTb7R_QmaJBV_Au2qZIL4GhzP91ek3qhwB0yUGkEdwy2nLLcQpAdeTTktI8AHSR_/exec";
+  const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbyreR0QIWehXaA6jcugjEGlr3ZEkTt9si5h8lsd8L1QlWiBp5m3VotYnpITCLZvYBOU/exec";
 
   let properties = [];
 
@@ -14,6 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const formStatus = document.getElementById('form-status');
 
   let activeCategory = 'all';
+
+  // Helper to update any response or property counter elements on the page
+  function updateResponseCounterUI(count) {
+    const counterElements = document.querySelectorAll('#propertyCount, #responseCount, .property-count, .response-count');
+    counterElements.forEach(el => {
+      el.innerText = count;
+    });
+  }
 
   function getSheetValue(row, possibleKeys) {
     for (let key of possibleKeys) {
@@ -35,6 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await fetch(GOOGLE_SHEET_API_URL);
       const data = await response.json();
       
+      // Update global response/property count
+      if (Array.isArray(data)) {
+        updateResponseCounterUI(data.length);
+      }
+
       properties = data.map((item, index) => {
         const title = getSheetValue(item, ['PROPERTY NAME', 'title', 'name']) || "Untitled Property";
         const type = getSheetValue(item, ['Property Type', 'type']) || "Commercial";
@@ -251,12 +264,15 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetch(GOOGLE_SHEET_API_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(newProp)
         });
 
         formStatus.className = 'form-status-msg success';
         formStatus.textContent = 'Property listed successfully! Redirecting to home...';
+
+        // Increment count UI immediately
+        updateResponseCounterUI(properties.length + 1);
 
         propertyForm.reset();
 
