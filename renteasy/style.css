@@ -3,28 +3,31 @@ body {
   margin: 0;
   color: #f1f5f9;
   background: 
-    linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.45)),
+    linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.55)),
     url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600&auto=format&fit=crop') center/cover fixed no-repeat;
   min-height: 100vh;
 }
 
-/* Header */
+/* Header Container */
 .main-header {
-  background: rgba(15, 23, 42, 0.92);
+  background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 18px 40px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+  padding: 20px 40px 15px 40px;
   position: sticky;
   top: 0;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
+/* Header Top Row */
 .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100%;
 }
 
 .brand-container {
@@ -33,88 +36,138 @@ body {
   gap: 16px;
 }
 
+/* Bigger Logo Icon & RentEasy Text */
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 68px !important;
+  height: 68px !important;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
 }
 
 .brand-name {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 42px !important;
+  font-weight: 900;
   margin: 0;
-  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 30%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
 }
 
+/* Navigation Buttons Top Right */
 .nav-tabs {
   display: flex;
   gap: 12px;
 }
 
 .tab-btn {
-  padding: 10px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30px;
+  padding: 10px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
   background: rgba(30, 41, 59, 0.8);
   color: #e2e8f0;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .tab-btn.active {
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   color: #ffffff;
-  border-color: #fb923c;
+  border-color: #ff7b00;
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
 }
 
+/* Property Type Filters Row (Pills) */
 .filters-row {
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 15px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 12px;
+  justify-content: flex-start;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
 }
 
 .filter-btn {
-  padding: 6px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 20px;
-  background: rgba(30, 41, 59, 0.7);
-  color: #94a3b8;
+  background: rgba(30, 41, 59, 0.6);
+  color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #ffffff;
 }
 
 .filter-btn.active {
   background: #0284c7;
   color: #ffffff;
   border-color: #38bdf8;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.5);
 }
 
+/* Section Display Toggle */
 .tab-section { display: none; }
-.tab-section.active { display: block; }
+.tab-section.active { display: block !important; }
 
-/* Grid Cards */
+/* Location Search Field */
+#search-container {
+  text-align: center;
+  margin: 30px auto 10px auto;
+  max-width: 500px;
+  padding: 0 15px;
+}
+
+#location-search {
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+#location-search::placeholder {
+  color: #94a3b8;
+}
+
+/* House Listings Grid */
 #listings {
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
-  padding: 40px 20px;
+  padding: 30px 20px;
   justify-content: center;
 }
 
 .card {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15, 23, 42, 0.88);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 16px;
   border-radius: 14px;
   width: 280px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover { transform: translateY(-6px); }
+.card:hover { 
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
 
 .card-thumb {
   width: 100%;
@@ -137,16 +190,19 @@ body {
 }
 
 .card h3 { color: #38bdf8; margin: 0 0 8px 0; }
-.card .price, .modal-box .price { color: #4ade80; }
+.card .price, .modal-box .price { color: #4ade80; font-weight: bold; }
 
-/* Form Styles */
+/* List Property Form Styling */
 .list-property-container {
-  max-width: 600px;
-  margin: 40px auto;
+  max-width: 550px;
+  margin: 30px auto;
   padding: 30px;
   background: rgba(15, 23, 42, 0.92);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 20;
 }
 
 .custom-form { display: flex; flex-direction: column; gap: 16px; }
@@ -158,9 +214,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   color: #ffffff;
+  outline: none;
 }
 
-.upload-hint { color: #94a3b8; font-size: 12px; }
 .action-form-btn {
   padding: 14px;
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
@@ -169,13 +225,14 @@ body {
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .form-status-msg { text-align: center; font-weight: 600; margin-top: 8px; }
 .form-status-msg.success { color: #4ade80; }
 .form-status-msg.error { color: #f87171; }
 
-/* Modal & Multi-Image Carousel */
+/* Modal & Carousel */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -219,7 +276,6 @@ body {
   text-align: center;
 }
 
-/* Image Carousel CSS */
 .carousel-container {
   position: relative;
   width: 100%;
