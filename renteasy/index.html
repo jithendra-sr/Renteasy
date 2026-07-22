@@ -3,118 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RentEasy - Find Homes & Offices</title>
+  <title>RentEasy</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- Top Header Navigation -->
   <header class="main-header">
     <div class="header-top">
+      
+      <!-- Big Logo & RentEasy Title -->
       <div class="brand-container">
-        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+        <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#fb923c" />
-              <stop offset="100%" stop-color="#ea580c" />
+            <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#475569"/>
+              <stop offset="100%" stop-color="#1e293b"/>
+            </radialGradient>
+            <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ff7b00"/>
+              <stop offset="100%" stop-color="#ff5500"/>
             </linearGradient>
-            <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#38bdf8" />
-              <stop offset="100%" stop-color="#0284c7" />
+            <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00d2ff"/>
+              <stop offset="100%" stop-color="#0088ff"/>
             </linearGradient>
             <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="8" result="blur" />
+              <feGaussianBlur stdDeviation="3" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
           </defs>
-          <circle cx="250" cy="250" r="220" fill="#1e293b" opacity="0.6" stroke="rgba(255,255,255,0.1)" stroke-width="4"/>
-          <circle cx="130" cy="310" r="18" fill="url(#orangeGrad)" filter="url(#glow)"/>
-          <circle cx="370" cy="310" r="18" fill="url(#cyanGrad)" filter="url(#glow)"/>
-          <path d="M 130 310 Q 250 210 370 310" fill="none" stroke="url(#orangeGrad)" stroke-width="16" stroke-linecap="round" />
-          <path d="M 140 315 Q 250 240 360 315" fill="none" stroke="url(#cyanGrad)" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
-          <path d="M 180 230 L 250 160 L 320 230" fill="none" stroke="url(#cyanGrad)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
-          <path d="M 290 185 V 165 H 305 V 200" fill="none" stroke="url(#cyanGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="250" cy="250" r="12" fill="#ffffff" filter="url(#glow)"/>
+          <circle cx="100" cy="100" r="90" fill="url(#bgGlow)" />
+          <path d="M 70 140 Q 100 110 130 140" fill="none" stroke="url(#blueGrad)" stroke-width="12" stroke-linecap="round" />
+          <path d="M 60 140 Q 100 100 140 140" fill="none" stroke="url(#orangeGrad)" stroke-width="12" stroke-linecap="round" />
+          <circle cx="60" cy="140" r="10" fill="#ff7b00" filter="url(#glow)" />
+          <circle cx="140" cy="140" r="10" fill="#00d2ff" filter="url(#glow)" />
+          <circle cx="100" cy="120" r="7" fill="#ffffff" filter="url(#glow)" />
+          <path d="M 70 95 L 100 65 L 130 95" fill="none" stroke="url(#blueGrad)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+          <rect x="112" y="70" width="8" height="15" fill="url(#blueGrad)" />
         </svg>
         <h1 class="brand-name">RentEasy</h1>
       </div>
-
-      <nav class="nav-tabs">
+      
+      <!-- Top Right Action Buttons -->
+      <div class="nav-tabs">
         <button class="tab-btn active" data-tab="browse">Browse Properties</button>
         <button class="tab-btn" data-tab="list">List Your Property</button>
-      </nav>
+      </div>
+
     </div>
 
-    <!-- Category Filter Row (Split 1RK & 1BHK) -->
+    <!-- Category Filter Pills Box -->
     <div id="filter-nav" class="filters-row">
       <button class="filter-btn active" data-type="all">All</button>
       <button class="filter-btn" data-type="1rk">1RK</button>
       <button class="filter-btn" data-type="1bhk">1BHK</button>
       <button class="filter-btn" data-type="2bhk">2BHK+</button>
       <button class="filter-btn" data-type="plot">Plots</button>
-      <button class="filter-btn" data-type="office">Office</button>
+      <button class="filter-btn" data-type="commercial">Commercial</button>
     </div>
   </header>
 
-  <!-- Browse Properties Section -->
-  <section id="browse-section" class="tab-section active">
-    <main id="listings">
-      <!-- Cards dynamically inserted here -->
-    </main>
-  </section>
+  <!-- Main Display Content -->
+  <main class="content-container">
 
-  <!-- List Property Section -->
-  <section id="list-section" class="tab-section">
-    <div class="list-property-container">
-      <h2>List Your Property</h2>
-      <p>Fill out the details below. Select multiple images directly from your gallery!</p>
-      
-      <form id="native-property-form" class="custom-form">
-        <div class="form-group">
-          <label for="prop-name">Property Name / Title *</label>
-          <input type="text" id="prop-name" placeholder="e.g. Luxury Villa, Cozy House" required>
-        </div>
+    <!-- Section 1: Browse Properties -->
+    <section id="browse-section" class="tab-section active">
+      <div id="search-container">
+        <input 
+          type="text" 
+          id="location-search" 
+          placeholder="🔍 Location (e.g. Hebbal, Hassan)..."
+        >
+      </div>
 
-        <div class="form-group">
-          <label for="prop-price">Property Price (₹ / month) *</label>
-          <input type="number" id="prop-price" placeholder="e.g. 20000" required>
-        </div>
+      <div id="listings" class="listings-grid"></div>
+    </section>
 
-        <div class="form-group">
-          <label for="prop-location">Property Location *</label>
-          <input type="text" id="prop-location" placeholder="e.g. Hassan, Bangalore" required>
-        </div>
+    <!-- Section 2: List Your Property Form -->
+    <section id="list-section" class="tab-section">
+      <div class="list-property-container">
+        <h2 style="margin-top:0; color:#38bdf8; text-align:center;">List Your Property</h2>
+        <form id="native-property-form" class="custom-form">
+          <div class="form-group">
+            <label for="prop-name">Property Name / Title</label>
+            <input type="text" id="prop-name" placeholder="e.g. Spacious 2BHK Apartment" required>
+          </div>
 
-        <!-- Property Type with Split 1RK & 1BHK -->
-        <div class="form-group">
-          <label for="prop-type">Property Type *</label>
-          <select id="prop-type" required>
-            <option value="1RK">1RK</option>
-            <option value="1BHK">1BHK</option>
-            <option value="2BHK+">2BHK+</option>
-            <option value="Plots">Plots</option>
-            <option value="Office">Office</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label for="prop-type">Property Type</label>
+            <select id="prop-type" required>
+              <option value="" disabled selected>Select Property Type</option>
+              <option value="1RK">1RK</option>
+              <option value="1BHK">1BHK</option>
+              <option value="2BHK">2BHK+</option>
+              <option value="Plot">Plot</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label for="prop-phone">Contact Phone Number *</label>
-          <input type="tel" id="prop-phone" placeholder="e.g. 9876543210" required>
-        </div>
+          <div class="form-group">
+            <label for="prop-location">Location</label>
+            <input type="text" id="prop-location" placeholder="e.g. Hebbal, Bangalore" required>
+          </div>
 
-        <div class="form-group">
-          <label for="prop-image-files">Property Images (Select one or more) *</label>
-          <input type="file" id="prop-image-files" accept="image/*" multiple required>
-          <small class="upload-hint">Select multiple photos at once from your gallery.</small>
-        </div>
+          <div class="form-group">
+            <label for="prop-price">Price (₹ / month)</label>
+            <input type="number" id="prop-price" placeholder="e.g. 15000" required>
+          </div>
 
-        <button type="submit" id="submit-btn" class="action-form-btn">
-          Submit Property Listing
-        </button>
+          <div class="form-group">
+            <label for="prop-phone">WhatsApp Contact Number</label>
+            <input type="tel" id="prop-phone" placeholder="e.g. 9876543210" required>
+          </div>
 
-        <p id="form-status" class="form-status-msg"></p>
-      </form>
-    </div>
-  </section>
+          <button type="submit" id="submit-btn" class="action-form-btn">Submit Property</button>
+          <div id="form-status" class="form-status-msg"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
 
   <script src="script.js"></script>
 </body>
