@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="google-site-verification" content="56OlX4il3UtTuJxF0FUjdY1J6BRiN2wf1Kx3kJzliVk" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RentEasy</title>
   <link rel="stylesheet" href="style.css">
@@ -70,6 +69,8 @@
 
     <!-- Section 1: Browse Properties -->
     <section id="browse-section" class="tab-section active">
+      <p class="live-counter">Properties Listed: <span id="propertyCount">0</span></p>
+
       <div id="search-container">
         <input 
           type="text" 
@@ -126,8 +127,39 @@
 
   </main>
 
+  <!-- Property Enquiry Pop-up Modal -->
+  <div id="propertyModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <img id="modalImg" src="" alt="Property Image" style="width:100%; max-height:220px; object-fit:cover; border-radius:8px;" />
+      <h2 id="modalTitle" style="margin-top:10px; color:#38bdf8;"></h2>
+      <p><strong>Property Type:</strong> <span id="modalType"></span></p>
+      <p><strong>Location:</strong> 📍 <span id="modalLocation"></span></p>
+      <p class="price" style="color:#22c55e; font-size:1.2em; font-weight:bold;">Price: ₹<span id="modalPrice"></span> / month</p>
+
+      <hr style="border-color:#334155; margin:15px 0;" />
+
+      <!-- Step A: Phone Submission Form -->
+      <div id="enquiryFormSection">
+        <p style="margin-bottom:8px;">Enter your phone number to submit enquiry:</p>
+        <input type="tel" id="customerPhoneInput" placeholder="Enter Phone Number" autocomplete="off" style="width:100%; padding:10px; box-sizing:border-box; margin-bottom:10px; border-radius:6px; border:1px solid #475569; background:#0f172a; color:#fff;" />
+        <button id="submitEnquiryBtn" onclick="submitEnquiry()" style="width:100%; padding:10px; background:#22c55e; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Submit Enquiry</button>
+      </div>
+
+      <!-- Step B: Waiting Approval Section (Updated Text) -->
+      <div id="waitingSection" style="display:none; text-align:center; padding:10px 0;">
+        <p style="color:#eab308; font-weight:bold; font-size:1.1em; margin-bottom:5px;">⏳ Request Sent! Waiting for Owner Approval...</p>
+        <p style="font-size:0.85em; color:#94a3b8; margin:0;">Contact details will reveal automatically once approved.</p>
+      </div>
+
+      <!-- Step C: Approved Contact Reveal Section -->
+      <div id="approvedSection" style="display:none; text-align:center; padding:10px 0;">
+        <p style="color:#22c55e; font-weight:bold; font-size:1.1em;">✅ Request Approved!</p>
+        <p style="font-size:1.1em;"><strong>Owner Contact:</strong> <a id="ownerPhoneDisplay" href="" style="color:#38bdf8; text-decoration:underline;"></a></p>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
-
-<p class="live-counter">Properties Listed: <span id="propertyCount">0</span></p>
